@@ -99,7 +99,15 @@ Following is a sample of applying data augmentation on an image.
 
 ![alt text][image5]
 
-Here is the new historgram for the frequencies of the signs in training data.
+Here is the comparison between the old and new training dataset.
+```
+| Data          | Min frequency   | Max frequency | Mean     | Median     | Std. Dev.  |
+|---------------|-----------------|---------------|----------|------------|------------|
+| Old Training  | 210             | 2250          | 911.84   | 600.0      | 687.72     |
+| New Training  | 420             | 2250          | 1109.98  | 960.0      | 550.38     |
+```
+
+and the historgram showing the frequencies of the signs in the augmented training data.
 
 ![alt text][image6]
 
@@ -181,6 +189,8 @@ At this point, as always recommended, I trained my model on the entire training 
 
 For implementation of this section, please refer to the `Test a Model on New Images` section in jupyter notebook.
 
+#### Loading and resizing images
+
 I randomly picked the following ten German traffic signs from the web.
 
 ![alt text][image8]
@@ -189,7 +199,13 @@ The images are not of the same shape unlike Udacity provided dataset (Here, we g
 
 ![alt text][image9]
 
-Then I ran the same preprocessing pipeline, namely grayscaling and normalizing, to those images, as I did for the training the model. Finally, I ran my model on these new images. The model was able to correctly guess 4 of the 10 traffic signs, which gives an accuracy of `40%`. This does compare favorably to the accuracy on the test set which was `92%`.
+#### Preprocessing
+
+Then I ran the same preprocessing pipeline, namely grayscaling and normalizing, to those images, as I did for the training the model.
+
+#### Performance of the model
+
+Finally, I ran my model on these new images. The model was able to correctly guess 4 of the 10 traffic signs, which gives an accuracy of `40%`. This does compare favorably to the accuracy on the test set which was `92%`.
 
 The top 5 probabilities and predicted classes for each image (in the same order as above, left to right) is as follows:
 ```
@@ -207,6 +223,7 @@ The top 5 probabilities and predicted classes for each image (in the same order 
 | Roundabout mandatory  | [13.2608 11.2747  9.9937  9.2092  8.3866] | [21 40  0 12 28] |  40          |          |
 ```
 
+#### Discussion
 
 As can be seen above, `Stop`, `Turn right ahead`, `No entry`, and `No passing` were detected correctly, and `Roundabout mandatory` came a close second. The reason these images did better than others is because the entire image consists of the signs only, whereas for other images, they sometime less than 50 % of the image size. This tells that cropping the images before throwing them to the pipeline could be a better option.
 
